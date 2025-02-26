@@ -314,17 +314,17 @@
     <div class="copy-notification" id="copy-notification">UDID copied to clipboard!</div>
 
     <script>
-        // Prevent scrolling
+
         document.addEventListener('touchmove', function(e) {
             e.preventDefault();
         }, { passive: false });
         
-        // Prevent zooming
+
         document.addEventListener('gesturestart', function(e) {
             e.preventDefault();
         });
         
-        // Create fullscreen background color element
+
         document.addEventListener('DOMContentLoaded', function() {
             var fullscreenElement = document.createElement('div');
             fullscreenElement.style.position = 'fixed';
@@ -336,21 +336,21 @@
             fullscreenElement.style.zIndex = '-2';
             document.body.appendChild(fullscreenElement);
             
-            // Copy button functionality
+
             const copyButton = document.getElementById('copy-button');
             const notification = document.getElementById('copy-notification');
             const udidValue = document.getElementById('udid-value').textContent;
             
             copyButton.addEventListener('click', function() {
-                // Copy to clipboard
+
                 navigator.clipboard.writeText(udidValue).then(function() {
-                    // Success
+
                     notification.classList.add('show');
                     setTimeout(function() {
                         notification.classList.remove('show');
                     }, 2000);
                 }).catch(function(err) {
-                    // Fallback for older browsers
+
                     const textarea = document.createElement('textarea');
                     textarea.value = udidValue;
                     textarea.style.position = 'fixed';
@@ -370,14 +370,14 @@
                     document.body.removeChild(textarea);
                 });
                 
-                // Button touch effect
+
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
                 }, 200);
             });
             
-            // Button touch effects
+
             document.querySelectorAll('.button, .copy-button').forEach(button => {
                 button.addEventListener('touchstart', function() {
                     this.style.transform = 'scale(0.95)';
