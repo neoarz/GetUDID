@@ -189,7 +189,8 @@
             box-shadow: 0 4px 11px rgba(66, 134, 245, 0.35);
             letter-spacing: 0.5px;
             margin-top: 15px;
-            margin-right: 10px;
+            border: none;
+            cursor: pointer;
         }
         
         .button:hover, .button:focus {
@@ -202,44 +203,9 @@
             box-shadow: 0 4px 11px rgba(66, 134, 245, 0.35);
         }
         
-        .copy-button {
-            display: inline-block;
-            padding: 14px 32px;
-            background: linear-gradient(45deg, #32a852, #4cd066);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-            opacity: 0;
-            cursor: pointer;
-            animation: fadeIn 0.6s 0.8s ease forwards;
-            box-shadow: 0 4px 11px rgba(50, 168, 82, 0.35);
-            letter-spacing: 0.5px;
-            margin-top: 15px;
-        }
-        
-        .copy-button:hover, .copy-button:focus {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 14px rgba(50, 168, 82, 0.4);
-        }
-        
-        .copy-button:active {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 11px rgba(50, 168, 82, 0.35);
-        }
-        
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        
         .copy-notification {
             position: fixed;
-            bottom: -60px;
+            top: -60px;
             left: 50%;
             transform: translateX(-50%);
             padding: 12px 24px;
@@ -249,10 +215,11 @@
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            z-index: 100;
         }
         
         .copy-notification.show {
-            bottom: 30px;
+            top: 30px;
         }
         
         @keyframes pulse {
@@ -268,13 +235,8 @@
         }
         
         @media (max-width: 768px) {
-            .button-container {
-                flex-direction: column;
-            }
-            
-            .button, .copy-button {
-                width: 100%;
-                margin: 5px 0;
+            .button {
+                animation: fadeIn 0.6s 0.8s ease forwards, pulse 2s 2s infinite;
             }
         }
     </style>
@@ -305,10 +267,7 @@
         
         <div class="section-title">Share Your Device Information</div>
         
-        <div class="button-container">
-            <button class="copy-button" id="copy-button">Copy UDID</button>
-            <a class="button" href="mailto:?subject=<?php echo urlencode($subject); ?>&body=<?php echo urlencode($body); ?>">Send by Email</a>
-        </div>
+        <p><button class="button" id="copy-button">Copy UDID</button></p>
     </div>
 
     <div class="copy-notification" id="copy-notification">UDID copied to clipboard!</div>
@@ -378,14 +337,12 @@
             });
             
 
-            document.querySelectorAll('.button, .copy-button').forEach(button => {
-                button.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(0.95)';
-                });
-                
-                button.addEventListener('touchend', function() {
-                    this.style.transform = 'scale(1)';
-                });
+            document.querySelector('.button').addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            document.querySelector('.button').addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
             });
         });
     </script>
