@@ -1,5 +1,5 @@
 // Get filename from URL parameter
-$name_file = isset($_GET['file']) ? $_GET['file'] : "device.mobileconfig";
+$name_file = isset($_GET['file']) ? $_GET['file'] : "https://raw.githubusercontent.com/neoarz/GetUDID/refs/heads/main/device.mobileconfig";
 
 // Basic security check to prevent directory traversal
 $name_file = basename($name_file);
