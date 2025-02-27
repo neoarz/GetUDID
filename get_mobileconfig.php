@@ -1,6 +1,6 @@
 <?php
 
-$name_file = isset($_GET['file']) ? $_GET['file'] : "device.mobileconfig";
+$name_file = isset($_GET['file']) ? $_GET['file'] : "https://raw.githubusercontent.com/neoarz/GetUDID/refs/heads/main/device.mobileconfig";
 
 
 $name_file = basename($name_file);
